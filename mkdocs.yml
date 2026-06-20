@@ -1,0 +1,41 @@
+site_name: 大模型与 Agent 工程学习路线
+site_description: 从 Transformer、推理、API、训练部署到 Agent 和上下文工程的学习笔记。
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+nav:
+  - 首页: index.md
+  - Transformer 入门: topics/transformer-beginner.md
+  - LLM 推理与架构优化入门: topics/llm-inference-architecture.md
+  - LLM API：从 HTTP 到 Transformer: topics/openai-api-beginner.md
+  - 模型训练与部署学习路线: topics/model-training-deployment-roadmap.md
+  - 原生 Python 训练循环入门: topics/python-training-loop.md
+  - LoRA 与 QLoRA 微调入门: topics/lora-qlora-finetuning.md
+  - 本地部署框架对比: topics/local-deployment-frameworks.md
+  - 参数调优手册: topics/parameter-tuning-handbook.md
+  - Agent 开发入门: topics/agent-development-beginner.md
+  - Agent 模式与实现: topics/agent-patterns.md
+  - Agent Skills 实现思路: topics/agent-skills-implementation.md
+  - Agent 效果评测框架: topics/agent-evaluation-framework.md
+  - 上下文工程入门: topics/context-engineering-beginner.md
+  - 什么是上下文工程: topics/context-engineering.md
+  - 上下文工程提示词模板库: topics/context-engineering-prompt-templates.md
+  - 开源 Agent 提示词目录: topics/open-source-agent-prompts.md
+  - 决策记录: decisions/index.md
