@@ -219,6 +219,8 @@ GPU 服务化：vLLM
 
 继续看：
 
+- [模型量化与推理压缩入门](model-quantization-and-compression.md)
+- [模型部署硬件选型](model-deployment-hardware-sizing.md)
 - [LLM API：从 HTTP 到 Transformer](openai-api-beginner.md)
 - [LLM 推理与架构优化入门](llm-inference-architecture.md)
 - [参数调优手册](parameter-tuning-handbook.md)
@@ -228,4 +230,3 @@ GPU 服务化：vLLM
 - [llama.cpp GitHub](https://github.com/ggml-org/llama.cpp)
 - [vLLM OpenAI-compatible server](https://docs.vllm.ai/en/stable/serving/openai_compatible_server/)
 - [SGLang Docs](https://docs.sglang.io/)
-

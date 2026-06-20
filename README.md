@@ -39,6 +39,8 @@ Agent 上下文工程
 
 - [模型训练与部署学习路线](docs/topics/model-training-deployment-roadmap.md)
 - [本地部署框架对比](docs/topics/local-deployment-frameworks.md)
+- [模型量化与推理压缩入门](docs/topics/model-quantization-and-compression.md)
+- [模型部署硬件选型](docs/topics/model-deployment-hardware-sizing.md)
 - [参数调优手册](docs/topics/parameter-tuning-handbook.md)
 
 如果你想理解 Agent 产品设计，继续读：

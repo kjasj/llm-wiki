@@ -638,6 +638,8 @@ FP16 -> INT4
 - 某些任务效果变差。
 - 对长上下文、复杂推理可能更敏感。
 
+量化本身还有很多分支，比如 FP8、INT8、INT4、AWQ、GPTQ、GGUF、KV Cache 量化。详细看：[模型量化与推理压缩入门](model-quantization-and-compression.md)。
+
 ## RoPE 和长上下文
 
 RoPE 是 Rotary Position Embedding，旋转位置编码。

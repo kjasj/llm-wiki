@@ -88,6 +88,7 @@ API 采样参数：控制模型怎么生成
 | --- | --- | --- |
 | `dtype` | 计算精度 | 精度和兼容性 |
 | `quantization` | 压缩模型 | 质量可能下降 |
+| `kv_cache_dtype` | KV Cache 精度 | 影响长上下文和并发显存 |
 | `max_model_len` | 最大上下文 | KV Cache 变大 |
 | `tensor_parallel_size` | 多 GPU 切分 | 通信成本增加 |
 | `gpu_memory_utilization` | 显存使用比例 | 太高容易 OOM |
@@ -151,7 +152,7 @@ prompt + temperature + top_p + 模型版本 + 部署 batch
 
 继续看：
 
+- [模型量化与推理压缩入门](model-quantization-and-compression.md)
 - [LLM API：从 HTTP 到 Transformer](openai-api-beginner.md)
 - [LLM 推理与架构优化入门](llm-inference-architecture.md)
 - [LoRA 与 QLoRA 微调入门](lora-qlora-finetuning.md)
-

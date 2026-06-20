@@ -35,6 +35,8 @@ API 调用
 线上参数调优
 ```
 
+如果你现在关心的是量化、买什么卡、多少显存、32B/671B 怎么部署，先读：[模型量化与推理压缩入门](model-quantization-and-compression.md) 和 [模型部署硬件选型](model-deployment-hardware-sizing.md)。
+
 ## 先分清几件事
 
 ### 训练

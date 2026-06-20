@@ -29,6 +29,8 @@ nav:
   - 原生 Python 训练循环入门: topics/python-training-loop.md
   - LoRA 与 QLoRA 微调入门: topics/lora-qlora-finetuning.md
   - 本地部署框架对比: topics/local-deployment-frameworks.md
+  - 模型量化与推理压缩入门: topics/model-quantization-and-compression.md
+  - 模型部署硬件选型: topics/model-deployment-hardware-sizing.md
   - 参数调优手册: topics/parameter-tuning-handbook.md
   - Agent 开发入门: topics/agent-development-beginner.md
   - Agent 模式与实现: topics/agent-patterns.md
