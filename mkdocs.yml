@@ -9,6 +9,8 @@ theme:
     - navigation.top
     - search.highlight
     - search.suggest
+extra_javascript:
+  - javascripts/mermaid-render.mjs
 markdown_extensions:
   - admonition
   - attr_list
@@ -17,14 +19,25 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid-source
+          class: mermaid-source
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
 nav:
   - 首页: index.md
+  - 核心概念索引: topics/concept-index.md
+  - 从 LLM 出生到大型 Agent 系统: topics/llm-to-agent-system-overview.md
+  - LLM 生命周期：从数据到线上模型: topics/llm-lifecycle.md
+  - 数据、Tokenizer 与预训练数据工程入门: topics/data-tokenizer-pretraining-data.md
+  - 后训练与对齐入门：SFT、DPO、RLHF、RFT: topics/post-training-alignment.md
+  - Reasoning Models 与 Test-Time Compute 入门: topics/reasoning-models-test-time-compute.md
   - Transformer 入门: topics/transformer-beginner.md
   - LLM 推理与架构优化入门: topics/llm-inference-architecture.md
   - LLM API：从 HTTP 到 Transformer: topics/openai-api-beginner.md
+  - LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent: topics/llm-application-architecture.md
   - 模型训练与部署学习路线: topics/model-training-deployment-roadmap.md
   - 原生 Python 训练循环入门: topics/python-training-loop.md
   - LoRA 与 QLoRA 微调入门: topics/lora-qlora-finetuning.md
@@ -34,6 +47,11 @@ nav:
   - 参数调优手册: topics/parameter-tuning-handbook.md
   - Agent 开发入门: topics/agent-development-beginner.md
   - Agent 模式与实现: topics/agent-patterns.md
+  - Harness Engineering: topics/harness-engineering.md
+  - Agent 安全与 Guardrails: topics/agent-security-guardrails.md
+  - Loop Engineering: topics/loop-engineering.md
+  - Multi-Agent 协作、自进化与记忆系统: topics/multi-agent-collaboration-memory.md
+  - 大型 Agent 系统架构设计: topics/large-agent-system-architecture.md
   - Agent Skills 实现思路: topics/agent-skills-implementation.md
   - Agent 效果评测框架: topics/agent-evaluation-framework.md
   - 上下文工程入门: topics/context-engineering-beginner.md

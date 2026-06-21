@@ -226,4 +226,8 @@ OpenClaw 更像常驻个人助手。
 
 那篇会进入更完整的定义、产品机制和 Java 设计。
 
+如果你想继续理解上下文工程如何变成完整 Agent 产品，读：[Harness Engineering：把模型变成可用 Agent 的工程](harness-engineering.md)。
+
+如果你想理解 Agent 为什么会一轮轮调用工具，以及如何停止，读：[Loop Engineering：Agent 循环、停止条件与恢复](loop-engineering.md)。
+
 如果你还没读 API 链路，建议先补：[LLM API：从 HTTP 到 Transformer](openai-api-beginner.md)。

@@ -293,6 +293,6 @@ forward -> loss -> backward -> optimizer step
 
 学完这篇后，继续看：
 
+- [数据、Tokenizer 与预训练数据工程入门](data-tokenizer-pretraining-data.md)
 - [LoRA 与 QLoRA 微调入门](lora-qlora-finetuning.md)
 - [参数调优手册](parameter-tuning-handbook.md)
-

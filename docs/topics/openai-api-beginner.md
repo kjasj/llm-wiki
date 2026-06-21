@@ -619,6 +619,7 @@ decode 的速度受：
 | `messages` / `input` | prompt 渲染层 | 决定输入内容 |
 | `instructions` | prompt 渲染层 | 放入高优先级指令 |
 | `tools` | prompt 渲染层 + 工具执行层 | 提供工具 schema 和执行协议 |
+| `reasoning` | 推理预算层 | 控制 reasoning model 的内部推理努力 |
 | `temperature` | 采样层 | 调整 logits 分布的尖锐程度 |
 | `top_p` | 采样层 | 只保留累计概率范围内 token |
 | `max_output_tokens` | 解码控制层 | 限制最多生成 token 数 |
@@ -1049,12 +1050,18 @@ POST /v1/chat/completions
 5. 理解 tokenizer 如何把 prompt text 变成 token id。
 6. 理解 prefill、decode、KV Cache。
 7. 理解 `temperature`、`top_p`、`max_output_tokens` 在采样和解码阶段生效。
-8. 再看 vLLM、SGLang、llama.cpp 如何提供 OpenAI-compatible API。
+8. 理解 `reasoning.effort` 这类参数为什么属于推理预算，不是普通采样。
+9. 再看 vLLM、SGLang、llama.cpp 如何提供 OpenAI-compatible API。
+
+如果你开始纠结每个参数怎么调，回到：[参数调优手册](parameter-tuning-handbook.md)。
+
+如果你开始看到 reasoning effort、thinking budget 或 reasoning tokens，继续读：[Reasoning Models 与 Test-Time Compute 入门](reasoning-models-test-time-compute.md)。
 
 ## 参考资料
 
 - [OpenAI Text generation guide](https://developers.openai.com/api/docs/guides/text)
 - [OpenAI Responses API reference](https://developers.openai.com/api/reference/resources/responses/methods/create)
+- [OpenAI Reasoning models](https://developers.openai.com/api/docs/guides/reasoning)
 - [OpenAI Chat Completions API reference](https://developers.openai.com/api/reference/resources/chat)
 - [vLLM OpenAI-compatible server](https://docs.vllm.ai/en/stable/serving/openai_compatible_server/)
 - [SGLang Docs](https://docs.sglang.io/)

@@ -44,6 +44,12 @@
 | Graph / Workflow | 用图或状态机约束 Agent 流程 | 生产系统、可控流程 | 灵活性比自由 Agent 低 |
 | Memory / Skill Library | 把成功经验沉淀成可复用技能 | 长期学习、代码助手、游戏 Agent | 记忆检索和版本管理复杂 |
 
+Agent 产品化工程继续看：[Harness Engineering：把模型变成可用 Agent 的工程](harness-engineering.md)。
+
+Agent 循环、停止条件和恢复继续看：[Loop Engineering：Agent 循环、停止条件与恢复](loop-engineering.md)。
+
+Multi-Agent、A2A 停止条件、自进化和记忆系统会单独展开，继续看：[Multi-Agent 协作、自进化与记忆系统](multi-agent-collaboration-memory.md)。
+
 ## ReAct 模式
 
 ReAct 来自 “Reasoning + Acting”。
@@ -724,4 +730,3 @@ Check Safety -> Refuse / Escalate
 - [CodeAct paper](https://arxiv.org/abs/2402.01030)
 - [AutoGen paper](https://arxiv.org/abs/2308.08155)
 - [Voyager paper](https://arxiv.org/abs/2305.16291)
-

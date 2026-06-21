@@ -847,5 +847,6 @@ ChatGPT 是基于大模型、对话产品、工具系统、安全策略等组合
 
 如果你接下来想理解模型为什么能在产品里跑得快、跑得便宜，可以继续读：
 
+- [数据、Tokenizer 与预训练数据工程入门](data-tokenizer-pretraining-data.md)
 - [LLM 推理与架构优化入门](llm-inference-architecture.md)
 - [LLM API：从 HTTP 到 Transformer](openai-api-beginner.md)

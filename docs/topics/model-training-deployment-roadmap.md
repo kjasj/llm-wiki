@@ -35,6 +35,8 @@ API 调用
 线上参数调优
 ```
 
+如果你想先从“模型怎么出生”看全流程，读：[LLM 生命周期：从数据到线上模型](llm-lifecycle.md)。
+
 如果你现在关心的是量化、买什么卡、多少显存、32B/671B 怎么部署，先读：[模型量化与推理压缩入门](model-quantization-and-compression.md) 和 [模型部署硬件选型](model-deployment-hardware-sizing.md)。
 
 ## 先分清几件事
@@ -152,6 +154,8 @@ SFT + LoRA + QLoRA
 ```
 
 不要一上来就扎进 RLHF。
+
+如果你想弄清 SFT、DPO、RLHF、RFT 分别解决什么问题，先读：[后训练与对齐入门：SFT、DPO、RLHF、RFT](post-training-alignment.md)。
 
 ## 训练参数怎么理解
 
@@ -654,6 +658,8 @@ GPU 服务化用 vLLM 可能更直接。
 
 这篇是地图。具体实践可以继续读：
 
+- [LLM 生命周期：从数据到线上模型](llm-lifecycle.md)
+- [数据、Tokenizer 与预训练数据工程入门](data-tokenizer-pretraining-data.md)
 - [原生 Python 训练循环入门](python-training-loop.md)
 - [LoRA 与 QLoRA 微调入门](lora-qlora-finetuning.md)
 - [本地部署框架对比](local-deployment-frameworks.md)

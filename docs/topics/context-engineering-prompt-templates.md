@@ -24,20 +24,22 @@ Skills 模板
 
 ## 来自开源项目的观察
 
-前面我们看过 Codex 和 OpenClaw 的源码提示词注入点，也参考了 OpenHands、CrewAI、LangChain/LangGraph 这类项目的公开文档和模板。
+前面我们看过 Codex、OpenClaw、OpenHands、Aider、Continue 的源码提示词注入点，也参考了 CrewAI、LangChain/LangGraph 这类项目的公开文档和模板。
 
 可以总结出几个高频模式。
 
 | 场景 | 开源项目里的对应做法 | 模板核心 |
 | --- | --- | --- |
-| 基础行为 | Codex base prompt、OpenHands system prompt | 角色、边界、工作方式 |
+| 基础行为 | Codex base prompt、OpenHands system prompt、Continue default system messages | 角色、边界、工作方式 |
 | 工具发现 | Codex Apps/Skills/Plugins、OpenClaw skills section | 列出可用能力和使用条件 |
 | Skills 渐进披露 | Codex Skills、OpenClaw available skills | 先暴露索引，需要时读完整说明 |
 | 权限沙箱 | Codex permissions prompt、Guardian | 当前能做什么、什么要审批 |
 | IDE/文件上下文 | Codex IDE context | 当前文件、选区、打开标签 |
-| 压缩恢复 | Codex compact、OpenClaw compaction | 总结目标、进度、决策、剩余工作 |
+| 编辑协议 | Aider whole-file / SEARCH-REPLACE、Continue edit templates | 让模型输出可解析、可应用的代码修改 |
+| 压缩恢复 | Codex compact、OpenClaw compaction、Continue previous summary | 总结目标、进度、决策、剩余工作 |
+| 仓库摘要 | Aider repo map、OpenHands repository skills | 在有限 token 里给模型代码结构 |
 | 运行时事件 | OpenClaw runtime context | 把内部事件包装为模型可读上下文 |
-| 通道适配 | OpenClaw voice/WhatsApp/Discord prompts | 按渠道调整回复方式 |
+| 通道/模式适配 | OpenClaw voice/WhatsApp/Discord、Continue Chat/Plan/Agent modes | 按渠道或模式调整回复方式 |
 | ReAct/工具循环 | LangGraph ReAct template、Agent 框架 | Thought/Action/Observation 或 tool call loop |
 | 评测 | OpenAI/LangSmith/Ragas/DeepEval | 用 rubric 判断最终结果或轨迹 |
 
@@ -712,6 +714,7 @@ resources/prompts/
 继续读：
 
 - [什么是上下文工程](context-engineering.md)
+- [Agent 安全与 Guardrails：权限、注入攻击与运行时边界](agent-security-guardrails.md)
 - [Agent Skills 实现思路](agent-skills-implementation.md)
 - [开源 Agent 提示词目录](open-source-agent-prompts.md)
 
@@ -726,4 +729,3 @@ resources/prompts/
 - [OpenHands system prompt template](https://github.com/OpenHands/software-agent-sdk/blob/main/openhands-sdk/openhands/sdk/agent/prompts/system_prompt.j2)
 - [CrewAI customizing prompts](https://docs.crewai.com/en/guides/advanced/customizing-prompts)
 - [LangGraph ReAct Agent template](https://github.com/langchain-ai/react-agent)
-

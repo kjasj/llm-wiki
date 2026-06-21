@@ -1495,6 +1495,7 @@ def grade_required_tools(trace, expected_tools):
 - temperature。
 - context compression。
 - 权限策略。
+- Guardrails 和审批策略。
 
 ## 常见误区
 
@@ -1538,8 +1539,10 @@ LLM judge 很有用，但不是万能。
 继续读：
 
 - [Agent 开发入门](agent-development-beginner.md)
+- [Agent 安全与 Guardrails：权限、注入攻击与运行时边界](agent-security-guardrails.md)
 - [上下文工程入门](context-engineering-beginner.md)
 - [参数调优手册](parameter-tuning-handbook.md)
+- [后训练与对齐入门：SFT、DPO、RLHF、RFT](post-training-alignment.md)
 
 ## 参考资料
 

@@ -246,6 +246,6 @@ LLaMA-Factory 更像统一训练平台。
 继续看：
 
 - [原生 Python 训练循环入门](python-training-loop.md)
+- [后训练与对齐入门：SFT、DPO、RLHF、RFT](post-training-alignment.md)
 - [本地部署框架对比](local-deployment-frameworks.md)
 - [参数调优手册](parameter-tuning-handbook.md)
-

@@ -336,7 +336,12 @@ Agent 需要看轨迹。
 继续读：
 
 - [Agent 模式与实现](agent-patterns.md)
+- [Harness Engineering：把模型变成可用 Agent 的工程](harness-engineering.md)
+- [Agent 安全与 Guardrails：权限、注入攻击与运行时边界](agent-security-guardrails.md)
+- [Loop Engineering：Agent 循环、停止条件与恢复](loop-engineering.md)
+- [Multi-Agent 协作、自进化与记忆系统](multi-agent-collaboration-memory.md)
 - [Agent Skills 实现思路](agent-skills-implementation.md)
 - [Agent 效果评测框架](agent-evaluation-framework.md)
 - [上下文工程入门](context-engineering-beginner.md)
 - [LLM API：从 HTTP 到 Transformer](openai-api-beginner.md)
+- [参数调优手册](parameter-tuning-handbook.md)

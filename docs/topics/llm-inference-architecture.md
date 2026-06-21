@@ -814,3 +814,13 @@ MQA/GQA 让缓存更小
 MoE 让大模型每次只激活一部分
 推理系统优化让线上服务跑得更快更稳
 ```
+
+## 下一步
+
+继续读：
+
+- [LLM API：从 HTTP 到 Transformer](openai-api-beginner.md)
+- [Reasoning Models 与 Test-Time Compute 入门](reasoning-models-test-time-compute.md)
+- [模型量化与推理压缩入门](model-quantization-and-compression.md)
+- [模型部署硬件选型](model-deployment-hardware-sizing.md)
+- [参数调优手册](parameter-tuning-handbook.md)
