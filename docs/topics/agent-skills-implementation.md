@@ -687,6 +687,7 @@ Skills 是上下文工程的一种典型落地：
 
 ## 参考资料
 
+- [Agent 项目开发实战：上下文、工具、权限和沙箱](agent-runtime-project-development.md)
 - [Codex Skills](https://developers.openai.com/codex/skills)
 - [Anthropic Skills repository](https://github.com/anthropics/skills)
 - [Anthropic: Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
@@ -695,4 +696,3 @@ Skills 是上下文工程的一种典型落地：
 - [Agent Skills format](https://agentskills.io/home)
 - [Codex available skills source](https://github.com/openai/codex/blob/d66708232299bdbf373ec55b0d6b938c246cfa60/codex-rs/core/src/context/available_skills_instructions.rs)
 - [OpenClaw system prompt source](https://github.com/openclaw/openclaw/blob/a085db6b642e589de609da3ec1b54bbf390af87e/packages/agent-core/src/harness/system-prompt.ts)
-

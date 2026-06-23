@@ -16,8 +16,8 @@
 
 1. 总览：核心概念、全局路线、LLM 生命周期。
 2. 模型原理：数据、Tokenizer、预训练、后训练、Reasoning、Transformer、推理架构。
-3. 应用与部署：API、应用架构、训练微调、部署框架、量化、硬件选型、参数调优。
-4. Agent 工程：Agent 入门、模式、Harness、Loop、安全、评测、Skills。
+3. 应用与部署：API、应用架构、RAG、模型路由、训练微调、部署框架、量化、硬件选型、参数调优、LLMOps。
+4. Agent 工程：Agent 入门、Runtime、模式、Harness、Loop、安全、评测、Skills、MCP。
 5. 系统设计：上下文工程、Multi-Agent、大型 Agent 系统、开源 Agent 提示词观察。
 
 ## 适合怎么读

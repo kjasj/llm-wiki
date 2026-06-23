@@ -21,3 +21,15 @@
 - 分组名称加序号，帮助读者按学习阶段从上到下阅读。
 - 菜单条目避免冒号、长副标题和重复的“入门 / 实现思路 / 学习路线”等后缀。
 - 英文术语只在必要时保留，例如 Agent、Harness、Loop、Prompt、Multi-Agent。
+
+## 2026-06-23 第一批缺口补齐
+
+- 新增 [RAG 工程实践](../topics/rag-engineering-practice.md)，把分散在应用架构、参数调优和评测里的 RAG 内容收束成独立专题。
+- 新增 [模型选择与路由](../topics/model-selection-routing.md)，补上多模型选择、fallback、成本和延迟权衡。
+- 新增 [LLM 应用生产化](../topics/llmops-production.md)，补上上线后的网关、trace、eval、灰度、回滚和成本控制。
+- 新增 [MCP 工具协议](../topics/mcp-tool-protocol.md)，补上 Agent 外部工具和数据源连接协议的独立说明。
+
+## 2026-06-23 Agent Runtime 专题
+
+- 新增 [Agent 项目开发实战](../topics/agent-runtime-project-development.md)，集中说明上下文裁剪、上下文压缩、Skills 接入、默认文件和命令工具、权限控制系统和沙箱系统。
+- 该专题放在 Agent 入门之后，作为从概念理解进入 runtime 实现的桥接文档。

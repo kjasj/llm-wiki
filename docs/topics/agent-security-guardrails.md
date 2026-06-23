@@ -614,6 +614,7 @@ Agent 评测：这些规则是否真的有效
 
 继续读：
 
+- [Agent 项目开发实战：上下文、工具、权限和沙箱](agent-runtime-project-development.md)
 - [Harness Engineering：把模型变成可用 Agent 的工程](harness-engineering.md)
 - [Loop Engineering：Agent 循环、停止条件与恢复](loop-engineering.md)
 - [Multi-Agent 协作、自进化与记忆系统](multi-agent-collaboration-memory.md)

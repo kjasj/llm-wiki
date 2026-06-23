@@ -41,6 +41,8 @@ nav:
   - 2. 应用与部署:
       - API 调用链: topics/openai-api-beginner.md
       - 应用架构: topics/llm-application-architecture.md
+      - RAG 工程: topics/rag-engineering-practice.md
+      - 模型路由: topics/model-selection-routing.md
       - 训练部署路线: topics/model-training-deployment-roadmap.md
       - Python 训练循环: topics/python-training-loop.md
       - LoRA / QLoRA: topics/lora-qlora-finetuning.md
@@ -48,13 +50,16 @@ nav:
       - 量化压缩: topics/model-quantization-and-compression.md
       - 硬件选型: topics/model-deployment-hardware-sizing.md
       - 参数调优: topics/parameter-tuning-handbook.md
+      - LLMOps: topics/llmops-production.md
   - 3. Agent 工程:
       - Agent 入门: topics/agent-development-beginner.md
+      - Agent Runtime: topics/agent-runtime-project-development.md
       - Agent 模式: topics/agent-patterns.md
       - Harness: topics/harness-engineering.md
       - Loop: topics/loop-engineering.md
       - 安全边界: topics/agent-security-guardrails.md
       - Skills: topics/agent-skills-implementation.md
+      - MCP 协议: topics/mcp-tool-protocol.md
       - 效果评测: topics/agent-evaluation-framework.md
   - 4. 系统设计:
       - 上下文入门: topics/context-engineering-beginner.md

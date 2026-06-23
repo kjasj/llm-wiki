@@ -336,6 +336,7 @@ Agent 需要看轨迹。
 继续读：
 
 - [Agent 模式与实现](agent-patterns.md)
+- [Agent 项目开发实战：上下文、工具、权限和沙箱](agent-runtime-project-development.md)
 - [Harness Engineering：把模型变成可用 Agent 的工程](harness-engineering.md)
 - [Agent 安全与 Guardrails：权限、注入攻击与运行时边界](agent-security-guardrails.md)
 - [Loop Engineering：Agent 循环、停止条件与恢复](loop-engineering.md)

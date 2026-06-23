@@ -15,11 +15,11 @@
   ↓
 Reasoning Models、Transformer、推理架构
   ↓
-API、RAG、工具调用、Workflow、Agent
+API、RAG、模型路由、工具调用、Workflow、Agent
   ↓
-训练、微调、量化、部署、硬件和参数
+训练、微调、量化、部署、硬件、参数、LLMOps
   ↓
-Agent Loop、Harness、Guardrails、Evaluation、Skills
+Agent Runtime、Loop、Harness、Guardrails、Evaluation、Skills、MCP
   ↓
 Context Engineering、Multi-Agent、大型 Agent 系统
 ```
@@ -32,10 +32,15 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 | 想建立完整知识地图 | [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md) | [LLM 生命周期](topics/llm-lifecycle.md) |
 | 想理解模型怎么处理文本 | [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md) | [Transformer 入门](topics/transformer-beginner.md) |
 | 想做 LLM 应用 | [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md) | [LLM 应用架构](topics/llm-application-architecture.md) |
+| 想做企业知识库或文档问答 | [RAG 工程实践](topics/rag-engineering-practice.md) | [Agent 效果评测框架](topics/agent-evaluation-framework.md) |
+| 想控制模型质量、延迟和成本 | [模型选择与路由](topics/model-selection-routing.md) | [参数调优手册](topics/parameter-tuning-handbook.md) |
 | 想训练或微调模型 | [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md) | [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md) |
 | 想本地或线上部署模型 | [本地部署框架对比](topics/local-deployment-frameworks.md) | [模型量化与推理压缩入门](topics/model-quantization-and-compression.md) |
+| 想把 LLM 应用上线运营 | [LLM 应用生产化](topics/llmops-production.md) | [模型选择与路由](topics/model-selection-routing.md) |
 | 想开发 Agent | [Agent 开发入门](topics/agent-development-beginner.md) | [Agent 模式与实现](topics/agent-patterns.md) |
+| 想实现 Agent runtime | [Agent 项目开发实战](topics/agent-runtime-project-development.md) | [Harness Engineering](topics/harness-engineering.md) |
 | 想做可靠 Agent 产品 | [Harness Engineering](topics/harness-engineering.md) | [Loop Engineering](topics/loop-engineering.md)、[Agent 安全与 Guardrails](topics/agent-security-guardrails.md) |
+| 想接入外部工具和数据源 | [MCP 工具协议](topics/mcp-tool-protocol.md) | [Agent Skills 实现思路](topics/agent-skills-implementation.md) |
 | 想评测 Agent 效果 | [Agent 效果评测框架](topics/agent-evaluation-framework.md) | [参数调优手册](topics/parameter-tuning-handbook.md) |
 | 想设计平台级系统 | [大型 Agent 系统架构设计](topics/large-agent-system-architecture.md) | [Multi-Agent 协作、自进化与记忆系统](topics/multi-agent-collaboration-memory.md) |
 
@@ -63,25 +68,30 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 
 1. [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)
 2. [LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent](topics/llm-application-architecture.md)
-3. [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)
-4. [原生 Python 训练循环入门](topics/python-training-loop.md)
-5. [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md)
-6. [本地部署框架对比](topics/local-deployment-frameworks.md)
-7. [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
-8. [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
-9. [参数调优手册](topics/parameter-tuning-handbook.md)
+3. [RAG 工程实践](topics/rag-engineering-practice.md)
+4. [模型选择与路由](topics/model-selection-routing.md)
+5. [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)
+6. [原生 Python 训练循环入门](topics/python-training-loop.md)
+7. [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md)
+8. [本地部署框架对比](topics/local-deployment-frameworks.md)
+9. [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
+10. [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
+11. [参数调优手册](topics/parameter-tuning-handbook.md)
+12. [LLM 应用生产化](topics/llmops-production.md)
 
 这一组回答“怎么把模型接进业务、怎么训练一点自己的行为、怎么让它跑起来并调到可用”。
 
 ### 3. Agent 工程
 
 1. [Agent 开发入门](topics/agent-development-beginner.md)
-2. [Agent 模式与实现](topics/agent-patterns.md)
-3. [Harness Engineering：把模型变成可用 Agent 的工程](topics/harness-engineering.md)
-4. [Loop Engineering：Agent 循环、停止条件与恢复](topics/loop-engineering.md)
-5. [Agent 安全与 Guardrails：权限、注入攻击与运行时边界](topics/agent-security-guardrails.md)
-6. [Agent Skills 实现思路](topics/agent-skills-implementation.md)
-7. [Agent 效果评测框架](topics/agent-evaluation-framework.md)
+2. [Agent 项目开发实战：上下文、工具、权限和沙箱](topics/agent-runtime-project-development.md)
+3. [Agent 模式与实现](topics/agent-patterns.md)
+4. [Harness Engineering：把模型变成可用 Agent 的工程](topics/harness-engineering.md)
+5. [Loop Engineering：Agent 循环、停止条件与恢复](topics/loop-engineering.md)
+6. [Agent 安全与 Guardrails：权限、注入攻击与运行时边界](topics/agent-security-guardrails.md)
+7. [Agent Skills 实现思路](topics/agent-skills-implementation.md)
+8. [MCP 工具协议](topics/mcp-tool-protocol.md)
+9. [Agent 效果评测框架](topics/agent-evaluation-framework.md)
 
 这一组回答“为什么同一个模型放进不同产品里效果差很多，以及 Agent 什么时候会失控、卡住或越权”。
 
@@ -104,7 +114,9 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 
 1. [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)
 2. [LLM 应用架构](topics/llm-application-architecture.md)
-3. [参数调优手册](topics/parameter-tuning-handbook.md)
+3. [模型选择与路由](topics/model-selection-routing.md)
+4. [参数调优手册](topics/parameter-tuning-handbook.md)
+5. [LLM 应用生产化](topics/llmops-production.md)
 
 暂时跳过训练、量化和 Multi-Agent。先把 API、上下文、状态、日志和评测闭环做清楚。
 
@@ -113,9 +125,10 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 读：
 
 1. [LLM 应用架构](topics/llm-application-architecture.md)
-2. [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md)
-3. [参数调优手册](topics/parameter-tuning-handbook.md)
-4. [Agent 效果评测框架](topics/agent-evaluation-framework.md)
+2. [RAG 工程实践](topics/rag-engineering-practice.md)
+3. [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md)
+4. [参数调优手册](topics/parameter-tuning-handbook.md)
+5. [Agent 效果评测框架](topics/agent-evaluation-framework.md)
 
 重点不是“接一个向量库”，而是数据清洗、chunk、召回、重排、引用、评测和失败归因。
 
@@ -147,12 +160,15 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 读：
 
 1. [Agent 开发入门](topics/agent-development-beginner.md)
-2. [Harness Engineering](topics/harness-engineering.md)
-3. [Loop Engineering](topics/loop-engineering.md)
-4. [Agent 安全与 Guardrails](topics/agent-security-guardrails.md)
-5. [上下文工程入门](topics/context-engineering-beginner.md)
-6. [什么是上下文工程](topics/context-engineering.md)
-7. [开源 Agent 提示词目录](topics/open-source-agent-prompts.md)
+2. [Agent 项目开发实战](topics/agent-runtime-project-development.md)
+3. [Harness Engineering](topics/harness-engineering.md)
+4. [Loop Engineering](topics/loop-engineering.md)
+5. [Agent 安全与 Guardrails](topics/agent-security-guardrails.md)
+6. [Agent Skills 实现思路](topics/agent-skills-implementation.md)
+7. [MCP 工具协议](topics/mcp-tool-protocol.md)
+8. [上下文工程入门](topics/context-engineering-beginner.md)
+9. [什么是上下文工程](topics/context-engineering.md)
+10. [开源 Agent 提示词目录](topics/open-source-agent-prompts.md)
 
 核心不是写一个更长的 system prompt，而是设计上下文、工具、权限、状态、恢复、评测和可观测性。
 
