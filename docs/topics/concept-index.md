@@ -1,8 +1,18 @@
 # 核心概念索引
 
-这篇是查词用的。
+这篇是查词和分流用的。
 
-如果你在文档里看到一个词，一时不知道它属于哪一层，可以先来这里定位。
+如果你在文档里看到一个词，一时不知道它属于哪一层，先来这里定位；如果你已经知道自己要解决的问题，可以直接跳到对应专题。
+
+## 怎么使用这篇索引
+
+建议按三步看：
+
+1. 先看“总览”，确认这个概念属于数据、模型、推理、应用、Agent 还是系统层。
+2. 再查下面的表，读“一句话解释”，建立最小直觉。
+3. 最后点“继续读”，进入真正展开的专题。
+
+不要把这里当成完整教程。索引只负责快速定位，细节放在专题文档里。
 
 ## 总览
 
@@ -17,6 +27,51 @@ API 层：HTTP API / Chat Template / Sampling / Streaming / Tool Choice
 Agent 层：Loop / State / Memory / Skill / Evaluator
 系统层：Harness / Guardrails / Orchestrator / Runtime / Trace / Multi-Agent
 ```
+
+## 分层地图
+
+| 层级 | 关心的问题 | 常见产物 | 优先阅读 |
+| --- | --- | --- | --- |
+| 数据层 | 模型从什么文本里学习 | corpus、清洗规则、去重管线、PII 过滤 | [数据、Tokenizer 与预训练数据工程入门](data-tokenizer-pretraining-data.md) |
+| 模型层 | 文本如何进入 Transformer 并生成 token | tokenizer、embedding、attention、logits | [Transformer 入门](transformer-beginner.md) |
+| 训练层 | 如何改变模型参数和行为 | pretraining、SFT、DPO、RFT、LoRA | [后训练与对齐入门](post-training-alignment.md) |
+| 推理层 | 如何更快、更省地生成 | KV Cache、batching、量化、speculative decoding | [LLM 推理与架构优化入门](llm-inference-architecture.md) |
+| API 层 | 应用如何调用模型 | HTTP API、messages、tools、streaming、sampling | [LLM API：从 HTTP 到 Transformer](openai-api-beginner.md) |
+| 应用层 | 如何把模型接进业务流程 | chatbot、RAG、tool calling、workflow | [LLM 应用架构](llm-application-architecture.md) |
+| Agent 层 | 如何让模型围绕目标连续行动 | loop、state、memory、tools、evaluator | [Agent 开发入门](agent-development-beginner.md) |
+| 系统层 | 如何做成可靠平台 | harness、guardrails、orchestrator、trace、multi-agent | [大型 Agent 系统架构设计](large-agent-system-architecture.md) |
+
+## 先分清几组边界
+
+### 模型能力 vs 产品能力
+
+模型能力来自数据、训练、结构和推理预算；产品能力来自上下文、工具、权限、状态、评测和运行时。
+
+所以同一个模型接进不同产品，效果会很不一样。要理解这个差异，读 [Harness Engineering](harness-engineering.md) 和 [上下文工程入门](context-engineering-beginner.md)。
+
+### 训练 vs 推理 vs 部署
+
+训练改变权重，推理使用权重生成结果，部署把推理变成可调用服务。
+
+如果你只是想让模型知道最新知识，通常先考虑 RAG；如果你要改变稳定格式、风格或工具行为，再考虑 SFT / LoRA。相关文档是 [模型训练与部署学习路线](model-training-deployment-roadmap.md)。
+
+### RAG vs 微调 vs 上下文工程
+
+RAG 是把外部资料检索进来，微调是改变模型参数，上下文工程是决定模型这一轮看到什么。
+
+三者可以组合，但解决的问题不同：
+
+| 问题 | 优先方案 |
+| --- | --- |
+| 需要引用最新或私有资料 | RAG |
+| 需要稳定输出格式或任务风格 | SFT / LoRA |
+| 需要按任务、权限、状态动态组织输入 | 上下文工程 |
+
+### Workflow vs Agent
+
+Workflow 的下一步主要由程序决定；Agent 的下一步会让模型参与决策。
+
+生产系统通常先做 workflow，再在需要开放探索、工具选择或复杂恢复的地方引入 Agent。相关文档是 [LLM 应用架构](llm-application-architecture.md) 和 [Loop Engineering](loop-engineering.md)。
 
 ## 模型与训练
 
@@ -144,6 +199,21 @@ Agent 层：Loop / State / Memory / Skill / Evaluator
 | Memory vs KV Cache | Memory 是产品保存的长期信息，KV Cache 是推理计算缓存 |
 | MCP vs A2A | MCP 连接工具和数据，A2A 连接 Agent 和 Agent |
 | Harness vs Loop | Harness 是 Agent 运行壳，Loop 是其中的行动循环 |
+
+## 按问题查
+
+| 你现在的问题 | 先读 |
+| --- | --- |
+| “为什么模型输出这么慢？” | [LLM 推理与架构优化入门](llm-inference-architecture.md) |
+| “temperature、top_p、max_tokens 怎么调？” | [参数调优手册](parameter-tuning-handbook.md) |
+| “我应该 RAG 还是微调？” | [模型训练与部署学习路线](model-training-deployment-roadmap.md) |
+| “LoRA、QLoRA 到底在训练什么？” | [LoRA 与 QLoRA 微调入门](lora-qlora-finetuning.md) |
+| “本地跑模型选 llama.cpp、vLLM 还是 SGLang？” | [本地部署框架对比](local-deployment-frameworks.md) |
+| “Agent 为什么会停不下来？” | [Loop Engineering](loop-engineering.md) |
+| “工具调用和 Agent 有什么区别？” | [LLM 应用架构](llm-application-architecture.md) |
+| “怎么评测 Agent 不是只看最终回答？” | [Agent 效果评测框架](agent-evaluation-framework.md) |
+| “prompt 注入怎么防？” | [Agent 安全与 Guardrails](agent-security-guardrails.md) |
+| “上下文工程到底和 prompt 工程差在哪？” | [什么是上下文工程](context-engineering.md) |
 
 ## 下一步
 

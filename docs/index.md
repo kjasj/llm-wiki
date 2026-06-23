@@ -1,136 +1,164 @@
 # 大模型与 Agent 工程学习路线
 
-这里放已经整理成学习材料的内容。
+这套文档想解决一个问题：
 
-这条路线不是资料堆放，而是从模型底层一路走到 Agent 产品设计：
+> 从“我会调用一个 LLM API”到“我能设计、部署和评测一个 Agent 系统”，中间到底要补哪些知识？
+
+文档按工程视角组织，而不是按论文或工具列表堆放。先建立全局地图，再进入模型、API、训练部署、Agent 产品和系统架构。
+
+## 一张全局路线图
 
 ```text
-全局地图
+总览
   ↓
-LLM 生命周期
+数据、Tokenizer、预训练、后训练
   ↓
-数据、Tokenizer 与预训练数据工程
+Reasoning Models、Transformer、推理架构
   ↓
-后训练与对齐
+API、RAG、工具调用、Workflow、Agent
   ↓
-Reasoning Models / Test-Time Compute
+训练、微调、量化、部署、硬件和参数
   ↓
-Transformer
+Agent Loop、Harness、Guardrails、Evaluation、Skills
   ↓
-LLM 推理优化
-  ↓
-LLM API：HTTP 请求如何变成 Transformer 输入
-  ↓
-LLM 应用架构：Chatbot / RAG / 工具调用 / Workflow / Agent
-  ↓
-模型训练、微调和部署
-  ↓
-Agent 开发与评测
-  ↓
-Harness Engineering / Agent 安全与 Guardrails / Loop Engineering
-  ↓
-Agent 上下文工程
-  ↓
-Multi-Agent 与大型 Agent 系统
-  ↓
-开源 Agent 提示词目录
+Context Engineering、Multi-Agent、大型 Agent 系统
 ```
 
-## 建议阅读顺序
+## 先按你的目标选路线
 
-0. 遇到术语先查：[核心概念索引](topics/concept-index.md)
-1. 先读：[从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md)
-2. 再读：[LLM 生命周期：从数据到线上模型](topics/llm-lifecycle.md)
-3. 展开数据地基：[数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md)
-4. 继续读：[后训练与对齐入门：SFT、DPO、RLHF、RFT](topics/post-training-alignment.md)
-5. 继续读：[Reasoning Models 与 Test-Time Compute 入门](topics/reasoning-models-test-time-compute.md)
-6. 继续读：[Transformer 入门](topics/transformer-beginner.md)
-7. 继续读：[LLM 推理与架构优化入门](topics/llm-inference-architecture.md)
-8. 然后读：[LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)
-9. 接着读：[LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent](topics/llm-application-architecture.md)
-10. 继续读：[模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)
-11. 选择实操方向：[原生 Python 训练循环入门](topics/python-training-loop.md)、[LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md)、[本地部署框架对比](topics/local-deployment-frameworks.md)
-12. 想理解显存为什么能降下来，读：[模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
-13. 需要买卡或上服务器时读：[模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
-14. 遇到参数再查：[参数调优手册](topics/parameter-tuning-handbook.md)
-15. 开始做 Agent：[Agent 开发入门](topics/agent-development-beginner.md)
-16. 选择模式：[Agent 模式与实现](topics/agent-patterns.md)
-17. 读 Agent 产品化工程：[Harness Engineering](topics/harness-engineering.md)
-18. 补上安全边界：[Agent 安全与 Guardrails](topics/agent-security-guardrails.md)
-19. 读 Agent 循环控制：[Loop Engineering](topics/loop-engineering.md)
-20. 进入多 Agent 架构：[Multi-Agent 协作、自进化与记忆系统](topics/multi-agent-collaboration-memory.md)
-21. 继续看平台级设计：[大型 Agent 系统架构设计](topics/large-agent-system-architecture.md)
-22. 设计可复用能力：[Agent Skills 实现思路](topics/agent-skills-implementation.md)
-23. 做质量闭环：[Agent 效果评测框架](topics/agent-evaluation-framework.md)
-24. 再读：[上下文工程入门](topics/context-engineering-beginner.md)
-25. 继续读：[什么是上下文工程](topics/context-engineering.md)
-26. 需要模板时查：[上下文工程提示词模板库](topics/context-engineering-prompt-templates.md)
-27. 最后查：[开源 Agent 提示词目录](topics/open-source-agent-prompts.md)
+| 目标 | 推荐入口 | 接下来读 |
+| --- | --- | --- |
+| 不知道术语属于哪一层 | [核心概念索引](topics/concept-index.md) | [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md) |
+| 想建立完整知识地图 | [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md) | [LLM 生命周期](topics/llm-lifecycle.md) |
+| 想理解模型怎么处理文本 | [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md) | [Transformer 入门](topics/transformer-beginner.md) |
+| 想做 LLM 应用 | [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md) | [LLM 应用架构](topics/llm-application-architecture.md) |
+| 想训练或微调模型 | [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md) | [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md) |
+| 想本地或线上部署模型 | [本地部署框架对比](topics/local-deployment-frameworks.md) | [模型量化与推理压缩入门](topics/model-quantization-and-compression.md) |
+| 想开发 Agent | [Agent 开发入门](topics/agent-development-beginner.md) | [Agent 模式与实现](topics/agent-patterns.md) |
+| 想做可靠 Agent 产品 | [Harness Engineering](topics/harness-engineering.md) | [Loop Engineering](topics/loop-engineering.md)、[Agent 安全与 Guardrails](topics/agent-security-guardrails.md) |
+| 想评测 Agent 效果 | [Agent 效果评测框架](topics/agent-evaluation-framework.md) | [参数调优手册](topics/parameter-tuning-handbook.md) |
+| 想设计平台级系统 | [大型 Agent 系统架构设计](topics/large-agent-system-architecture.md) | [Multi-Agent 协作、自进化与记忆系统](topics/multi-agent-collaboration-memory.md) |
 
-建议先理解模型如何处理文本、推理为什么有成本，再理解 API 如何调用模型，然后进入训练、部署和 Agent 上下文工程。源码目录是进阶资料，不建议第一遍直接看。
+## 推荐阅读顺序
 
-## 你现在应该读哪篇
+### 0. 先建立地图
 
-如果你遇到陌生词，先查 [核心概念索引](topics/concept-index.md)。如果你不知道整套文档怎么串起来，先读 [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md)。
+1. [核心概念索引](topics/concept-index.md)
+2. [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md)
+3. [LLM 生命周期：从数据到线上模型](topics/llm-lifecycle.md)
 
-如果你想理解 LLM 怎么从数据变成线上模型，读 [LLM 生命周期：从数据到线上模型](topics/llm-lifecycle.md)。
+这一组回答“这些词彼此是什么关系”。不要一开始就陷进某个框架或参数。
 
-如果你想理解原始网页、代码、论文如何变成 token 序列和预训练样本，读 [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md)。
+### 1. 模型原理
 
-如果你想理解 base model 为什么会变成 chat model、tool-use model 或 reasoning model，读 [后训练与对齐入门：SFT、DPO、RLHF、RFT](topics/post-training-alignment.md)。
+1. [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md)
+2. [后训练与对齐入门：SFT、DPO、RLHF、RFT](topics/post-training-alignment.md)
+3. [Reasoning Models 与 Test-Time Compute 入门](topics/reasoning-models-test-time-compute.md)
+4. [Transformer 入门](topics/transformer-beginner.md)
+5. [LLM 推理与架构优化入门](topics/llm-inference-architecture.md)
 
-如果你想理解 reasoning effort、thinking budget、reasoning tokens 和 Agent loop 成本，读 [Reasoning Models 与 Test-Time Compute 入门](topics/reasoning-models-test-time-compute.md)。
+这一组回答“模型为什么能生成、为什么慢、为什么贵、为什么有上下文长度限制”。
 
-如果你不知道模型内部怎么处理文字，读 [Transformer 入门](topics/transformer-beginner.md)。
+### 2. 应用与部署
 
-如果你已经知道 attention，但不知道为什么推理服务要谈 KV Cache、batching、MoE，读 [LLM 推理与架构优化入门](topics/llm-inference-architecture.md)。
+1. [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)
+2. [LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent](topics/llm-application-architecture.md)
+3. [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)
+4. [原生 Python 训练循环入门](topics/python-training-loop.md)
+5. [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md)
+6. [本地部署框架对比](topics/local-deployment-frameworks.md)
+7. [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
+8. [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
+9. [参数调优手册](topics/parameter-tuning-handbook.md)
 
-如果你想知道一次 HTTP 请求如何变成模型输入，读 [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)。
+这一组回答“怎么把模型接进业务、怎么训练一点自己的行为、怎么让它跑起来并调到可用”。
 
-如果你想知道有了 API 后应用怎么搭，读 [LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent](topics/llm-application-architecture.md)。
+### 3. Agent 工程
 
-如果你想训练或部署自己的模型，先读 [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)，再选择训练或部署专题。看不懂 INT4、AWQ、GPTQ、GGUF 时，读 [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)。需要判断 32B、70B、671B 要什么机器时，读 [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)。
+1. [Agent 开发入门](topics/agent-development-beginner.md)
+2. [Agent 模式与实现](topics/agent-patterns.md)
+3. [Harness Engineering：把模型变成可用 Agent 的工程](topics/harness-engineering.md)
+4. [Loop Engineering：Agent 循环、停止条件与恢复](topics/loop-engineering.md)
+5. [Agent 安全与 Guardrails：权限、注入攻击与运行时边界](topics/agent-security-guardrails.md)
+6. [Agent Skills 实现思路](topics/agent-skills-implementation.md)
+7. [Agent 效果评测框架](topics/agent-evaluation-framework.md)
 
-如果你要开发 Agent，读 [Agent 开发入门](topics/agent-development-beginner.md)，再读 [Agent 模式与实现](topics/agent-patterns.md)。想理解同一个模型为什么放进不同 Agent 产品效果不同，读 [Harness Engineering](topics/harness-engineering.md)。只要 Agent 能调用工具、读文件、联网或写数据，就要读 [Agent 安全与 Guardrails](topics/agent-security-guardrails.md)。想解决循环、重试、停止和恢复，读 [Loop Engineering](topics/loop-engineering.md)。如果要做多 Agent、A2A、自进化和记忆系统，读 [Multi-Agent 协作、自进化与记忆系统](topics/multi-agent-collaboration-memory.md)。如果要做平台级架构，读 [大型 Agent 系统架构设计](topics/large-agent-system-architecture.md)。
+这一组回答“为什么同一个模型放进不同产品里效果差很多，以及 Agent 什么时候会失控、卡住或越权”。
 
-如果你想做 Codex、Claude Code 这类 Agent 产品，读 [上下文工程入门](topics/context-engineering-beginner.md) 和 [什么是上下文工程](topics/context-engineering.md)。
+### 4. 系统设计
 
-## 机器学习基础
+1. [上下文工程入门](topics/context-engineering-beginner.md)
+2. [什么是上下文工程](topics/context-engineering.md)
+3. [上下文工程提示词模板库](topics/context-engineering-prompt-templates.md)
+4. [Multi-Agent 协作、自进化与记忆系统](topics/multi-agent-collaboration-memory.md)
+5. [大型 Agent 系统架构设计](topics/large-agent-system-architecture.md)
+6. [开源 Agent 提示词目录](topics/open-source-agent-prompts.md)
 
-- [核心概念索引](topics/concept-index.md)
-- [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md)
-- [LLM 生命周期：从数据到线上模型](topics/llm-lifecycle.md)
-- [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md)
-- [后训练与对齐入门：SFT、DPO、RLHF、RFT](topics/post-training-alignment.md)
-- [Reasoning Models 与 Test-Time Compute 入门](topics/reasoning-models-test-time-compute.md)
-- [Transformer 入门](topics/transformer-beginner.md)
-- [LLM 推理与架构优化入门](topics/llm-inference-architecture.md)
+这一组回答“模型每一轮应该看到什么，多个 Agent 如何协作，平台如何管理任务、状态、记忆、权限和评测”。
 
-## API、训练与部署
+## 常见阅读路径
 
-- [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)
-- [LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent](topics/llm-application-architecture.md)
-- [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)
-- [原生 Python 训练循环入门](topics/python-training-loop.md)
-- [后训练与对齐入门：SFT、DPO、RLHF、RFT](topics/post-training-alignment.md)
-- [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md)
-- [本地部署框架对比](topics/local-deployment-frameworks.md)
-- [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
-- [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
-- [参数调优手册](topics/parameter-tuning-handbook.md)
+### 我只想快速做一个 LLM 应用
 
-## Agent 与上下文工程
+读：
 
-- [Agent 开发入门](topics/agent-development-beginner.md)
-- [Agent 模式与实现](topics/agent-patterns.md)
-- [Harness Engineering](topics/harness-engineering.md)
-- [Agent 安全与 Guardrails](topics/agent-security-guardrails.md)
-- [Loop Engineering](topics/loop-engineering.md)
-- [Multi-Agent 协作、自进化与记忆系统](topics/multi-agent-collaboration-memory.md)
-- [大型 Agent 系统架构设计](topics/large-agent-system-architecture.md)
-- [Agent Skills 实现思路](topics/agent-skills-implementation.md)
-- [Agent 效果评测框架](topics/agent-evaluation-framework.md)
-- [上下文工程入门](topics/context-engineering-beginner.md)
-- [什么是上下文工程](topics/context-engineering.md)
-- [上下文工程提示词模板库](topics/context-engineering-prompt-templates.md)
-- [开源 Agent 提示词目录](topics/open-source-agent-prompts.md)
+1. [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)
+2. [LLM 应用架构](topics/llm-application-architecture.md)
+3. [参数调优手册](topics/parameter-tuning-handbook.md)
+
+暂时跳过训练、量化和 Multi-Agent。先把 API、上下文、状态、日志和评测闭环做清楚。
+
+### 我想做 RAG 或企业知识库
+
+读：
+
+1. [LLM 应用架构](topics/llm-application-architecture.md)
+2. [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md)
+3. [参数调优手册](topics/parameter-tuning-handbook.md)
+4. [Agent 效果评测框架](topics/agent-evaluation-framework.md)
+
+重点不是“接一个向量库”，而是数据清洗、chunk、召回、重排、引用、评测和失败归因。
+
+### 我想微调开源模型
+
+读：
+
+1. [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)
+2. [原生 Python 训练循环入门](topics/python-training-loop.md)
+3. [后训练与对齐入门](topics/post-training-alignment.md)
+4. [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md)
+5. [参数调优手册](topics/parameter-tuning-handbook.md)
+
+先确认问题是不是需要微调。新知识通常优先用 RAG，稳定格式和行为才更适合 SFT / LoRA。
+
+### 我想本地部署模型
+
+读：
+
+1. [本地部署框架对比](topics/local-deployment-frameworks.md)
+2. [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
+3. [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
+4. [LLM 推理与架构优化入门](topics/llm-inference-architecture.md)
+
+先分清本地实验、小型服务和生产服务。能跑起来不等于能稳定服务。
+
+### 我想做 Codex / Claude Code 这类 Agent 产品
+
+读：
+
+1. [Agent 开发入门](topics/agent-development-beginner.md)
+2. [Harness Engineering](topics/harness-engineering.md)
+3. [Loop Engineering](topics/loop-engineering.md)
+4. [Agent 安全与 Guardrails](topics/agent-security-guardrails.md)
+5. [上下文工程入门](topics/context-engineering-beginner.md)
+6. [什么是上下文工程](topics/context-engineering.md)
+7. [开源 Agent 提示词目录](topics/open-source-agent-prompts.md)
+
+核心不是写一个更长的 system prompt，而是设计上下文、工具、权限、状态、恢复、评测和可观测性。
+
+## 文档维护约定
+
+- 首页只维护学习路线，不在这里展开所有概念细节。
+- 概念定义优先放在 [核心概念索引](topics/concept-index.md)，专题文档只保留必要解释。
+- 每篇专题尽量回答一个主问题，并在末尾给出“下一步”。
+- 交叉引用用于承接上下游，不重复复制整段内容。

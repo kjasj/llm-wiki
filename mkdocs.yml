@@ -1,4 +1,4 @@
-site_name: 大模型与 Agent 工程学习路线
+site_name: LLM 与 Agent 工程
 site_description: 从 Transformer、推理、API、训练部署到 Agent 和上下文工程的学习笔记。
 theme:
   name: material
@@ -28,34 +28,39 @@ markdown_extensions:
       custom_checkbox: true
 nav:
   - 首页: index.md
-  - 核心概念索引: topics/concept-index.md
-  - 从 LLM 出生到大型 Agent 系统: topics/llm-to-agent-system-overview.md
-  - LLM 生命周期：从数据到线上模型: topics/llm-lifecycle.md
-  - 数据、Tokenizer 与预训练数据工程入门: topics/data-tokenizer-pretraining-data.md
-  - 后训练与对齐入门：SFT、DPO、RLHF、RFT: topics/post-training-alignment.md
-  - Reasoning Models 与 Test-Time Compute 入门: topics/reasoning-models-test-time-compute.md
-  - Transformer 入门: topics/transformer-beginner.md
-  - LLM 推理与架构优化入门: topics/llm-inference-architecture.md
-  - LLM API：从 HTTP 到 Transformer: topics/openai-api-beginner.md
-  - LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent: topics/llm-application-architecture.md
-  - 模型训练与部署学习路线: topics/model-training-deployment-roadmap.md
-  - 原生 Python 训练循环入门: topics/python-training-loop.md
-  - LoRA 与 QLoRA 微调入门: topics/lora-qlora-finetuning.md
-  - 本地部署框架对比: topics/local-deployment-frameworks.md
-  - 模型量化与推理压缩入门: topics/model-quantization-and-compression.md
-  - 模型部署硬件选型: topics/model-deployment-hardware-sizing.md
-  - 参数调优手册: topics/parameter-tuning-handbook.md
-  - Agent 开发入门: topics/agent-development-beginner.md
-  - Agent 模式与实现: topics/agent-patterns.md
-  - Harness Engineering: topics/harness-engineering.md
-  - Agent 安全与 Guardrails: topics/agent-security-guardrails.md
-  - Loop Engineering: topics/loop-engineering.md
-  - Multi-Agent 协作、自进化与记忆系统: topics/multi-agent-collaboration-memory.md
-  - 大型 Agent 系统架构设计: topics/large-agent-system-architecture.md
-  - Agent Skills 实现思路: topics/agent-skills-implementation.md
-  - Agent 效果评测框架: topics/agent-evaluation-framework.md
-  - 上下文工程入门: topics/context-engineering-beginner.md
-  - 什么是上下文工程: topics/context-engineering.md
-  - 上下文工程提示词模板库: topics/context-engineering-prompt-templates.md
-  - 开源 Agent 提示词目录: topics/open-source-agent-prompts.md
+  - 0. 总览:
+      - 概念索引: topics/concept-index.md
+      - 全局地图: topics/llm-to-agent-system-overview.md
+      - LLM 生命周期: topics/llm-lifecycle.md
+  - 1. 模型原理:
+      - 数据与 Tokenizer: topics/data-tokenizer-pretraining-data.md
+      - 后训练与对齐: topics/post-training-alignment.md
+      - Reasoning 模型: topics/reasoning-models-test-time-compute.md
+      - Transformer: topics/transformer-beginner.md
+      - 推理架构: topics/llm-inference-architecture.md
+  - 2. 应用与部署:
+      - API 调用链: topics/openai-api-beginner.md
+      - 应用架构: topics/llm-application-architecture.md
+      - 训练部署路线: topics/model-training-deployment-roadmap.md
+      - Python 训练循环: topics/python-training-loop.md
+      - LoRA / QLoRA: topics/lora-qlora-finetuning.md
+      - 部署框架: topics/local-deployment-frameworks.md
+      - 量化压缩: topics/model-quantization-and-compression.md
+      - 硬件选型: topics/model-deployment-hardware-sizing.md
+      - 参数调优: topics/parameter-tuning-handbook.md
+  - 3. Agent 工程:
+      - Agent 入门: topics/agent-development-beginner.md
+      - Agent 模式: topics/agent-patterns.md
+      - Harness: topics/harness-engineering.md
+      - Loop: topics/loop-engineering.md
+      - 安全边界: topics/agent-security-guardrails.md
+      - Skills: topics/agent-skills-implementation.md
+      - 效果评测: topics/agent-evaluation-framework.md
+  - 4. 系统设计:
+      - 上下文入门: topics/context-engineering-beginner.md
+      - 上下文工程: topics/context-engineering.md
+      - Prompt 模板: topics/context-engineering-prompt-templates.md
+      - Multi-Agent 与记忆: topics/multi-agent-collaboration-memory.md
+      - 大型系统架构: topics/large-agent-system-architecture.md
+      - 开源提示词目录: topics/open-source-agent-prompts.md
   - 决策记录: decisions/index.md
