@@ -38,6 +38,7 @@ nav:
       - Reasoning 模型: topics/reasoning-models-test-time-compute.md
       - Transformer: topics/transformer-beginner.md
       - 推理架构: topics/llm-inference-architecture.md
+      - 推理优化案例: topics/hy3-preview-inference-optimization-case.md
   - 2. 应用与部署:
       - API 调用链: topics/openai-api-beginner.md
       - 应用架构: topics/llm-application-architecture.md

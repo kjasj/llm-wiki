@@ -61,6 +61,7 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 3. [Reasoning Models 与 Test-Time Compute 入门](topics/reasoning-models-test-time-compute.md)
 4. [Transformer 入门](topics/transformer-beginner.md)
 5. [LLM 推理与架构优化入门](topics/llm-inference-architecture.md)
+6. [Hy3 Preview 推理优化案例：从算子到系统](topics/hy3-preview-inference-optimization-case.md)
 
 这一组回答“模型为什么能生成、为什么慢、为什么贵、为什么有上下文长度限制”。
 
@@ -152,6 +153,7 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 2. [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
 3. [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
 4. [LLM 推理与架构优化入门](topics/llm-inference-architecture.md)
+5. [Hy3 Preview 推理优化案例](topics/hy3-preview-inference-optimization-case.md)
 
 先分清本地实验、小型服务和生产服务。能跑起来不等于能稳定服务。
 

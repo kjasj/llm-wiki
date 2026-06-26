@@ -1034,6 +1034,7 @@ KV Cache
 - [本地部署框架对比](local-deployment-frameworks.md)
 - [LLM 推理与架构优化入门](llm-inference-architecture.md)
 - [参数调优手册](parameter-tuning-handbook.md)
+- [Hy3 Preview 推理优化案例：从算子到系统](hy3-preview-inference-optimization-case.md)
 
 ## 参考资料
 

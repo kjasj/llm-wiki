@@ -824,3 +824,4 @@ MoE 让大模型每次只激活一部分
 - [模型量化与推理压缩入门](model-quantization-and-compression.md)
 - [模型部署硬件选型](model-deployment-hardware-sizing.md)
 - [参数调优手册](parameter-tuning-handbook.md)
+- [Hy3 Preview 推理优化案例：从算子到系统](hy3-preview-inference-optimization-case.md)

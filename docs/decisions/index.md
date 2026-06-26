@@ -33,3 +33,8 @@
 
 - 新增 [Agent 项目开发实战](../topics/agent-runtime-project-development.md)，集中说明上下文裁剪、上下文压缩、Skills 接入、默认文件和命令工具、权限控制系统和沙箱系统。
 - 该专题放在 Agent 入门之后，作为从概念理解进入 runtime 实现的桥接文档。
+
+## 2026-06-26 推理优化案例
+
+- 新增 [Hy3 Preview 推理优化案例：从算子到系统](../topics/hy3-preview-inference-optimization-case.md)，把腾讯混元 Hy3 Preview 推理优化文章整理成生产级推理系统案例。
+- 该专题放在“模型原理 / 推理架构”之后，承接 KV Cache、MoE、量化、并行和硬件选型等基础概念，强调长上下文模型在真实 SLO 下需要算子、通信、缓存、调度和压缩协同优化。
