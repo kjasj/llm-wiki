@@ -28,7 +28,8 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 
 | 目标 | 推荐入口 | 接下来读 |
 | --- | --- | --- |
-| 不知道术语属于哪一层 | [核心概念索引](topics/concept-index.md) | [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md) |
+| 不知道术语属于哪一层 | [核心概念索引](topics/concept-index.md) | [大模型与推理优化术语表](topics/llm-inference-terms-glossary.md) |
+| 正在读推理优化文章，缩写太多 | [大模型与推理优化术语表](topics/llm-inference-terms-glossary.md) | [LLM 推理与架构优化入门](topics/llm-inference-architecture.md) |
 | 想建立完整知识地图 | [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md) | [LLM 生命周期](topics/llm-lifecycle.md) |
 | 想理解模型怎么处理文本 | [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md) | [Transformer 入门](topics/transformer-beginner.md) |
 | 想做 LLM 应用 | [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md) | [LLM 应用架构](topics/llm-application-architecture.md) |
@@ -49,8 +50,9 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 ### 0. 先建立地图
 
 1. [核心概念索引](topics/concept-index.md)
-2. [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md)
-3. [LLM 生命周期：从数据到线上模型](topics/llm-lifecycle.md)
+2. [大模型与推理优化术语表](topics/llm-inference-terms-glossary.md)
+3. [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md)
+4. [LLM 生命周期：从数据到线上模型](topics/llm-lifecycle.md)
 
 这一组回答“这些词彼此是什么关系”。不要一开始就陷进某个框架或参数。
 

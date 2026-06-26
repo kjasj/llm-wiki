@@ -4,6 +4,8 @@
 
 如果你在文档里看到一个词，一时不知道它属于哪一层，先来这里定位；如果你已经知道自己要解决的问题，可以直接跳到对应专题。
 
+如果你正在读推理优化文章，遇到大量缩写、kernel、并行、量化和硬件术语，可以直接查 [大模型与推理优化术语表](llm-inference-terms-glossary.md)。
+
 ## 怎么使用这篇索引
 
 建议按三步看：
@@ -40,6 +42,8 @@ Agent 层：Runtime / Loop / State / Memory / Skill / Evaluator
 | 应用层 | 如何把模型接进业务流程 | chatbot、RAG、model router、tool calling、workflow | [LLM 应用架构](llm-application-architecture.md) |
 | Agent 层 | 如何让模型围绕目标连续行动 | runtime、loop、state、memory、tools、evaluator、MCP | [Agent 开发入门](agent-development-beginner.md) |
 | 系统层 | 如何做成可靠平台 | harness、policy engine、sandbox、orchestrator、trace、LLMOps、multi-agent | [大型 Agent 系统架构设计](large-agent-system-architecture.md) |
+
+更多推理优化和硬件相关缩写见：[大模型与推理优化术语表](llm-inference-terms-glossary.md)。
 
 ## 先分清几组边界
 

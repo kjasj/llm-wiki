@@ -30,6 +30,7 @@ nav:
   - 首页: index.md
   - 0. 总览:
       - 概念索引: topics/concept-index.md
+      - 术语表: topics/llm-inference-terms-glossary.md
       - 全局地图: topics/llm-to-agent-system-overview.md
       - LLM 生命周期: topics/llm-lifecycle.md
   - 1. 模型原理:

@@ -8,6 +8,8 @@
 
 > 当一个 GQA + MoE、支持 256K 上下文的大模型要在 Hopper 96G 这类硬件上满足线上 SLO，推理系统到底要优化哪些层？
 
+如果阅读时遇到不熟的缩写，可以先查：[大模型与推理优化术语表](llm-inference-terms-glossary.md)。
+
 先看总图：
 
 ![Hy3 Preview 推理优化概览](../assets/hy3-preview-inference-optimization/fig-01.gif)
@@ -697,9 +699,10 @@ Agent/Coding 场景有大量可复用前缀，因此多级 Prefix / KV Cache 会
 如果你还不熟这些概念，建议按这个顺序补：
 
 1. [LLM 推理与架构优化入门](llm-inference-architecture.md)：理解 KV Cache、Prefix Cache、MoE、Speculative Decoding、Batching。
-2. [模型量化与推理压缩入门](model-quantization-and-compression.md)：理解 W8A8、W4A8、KV Cache 量化和评测风险。
-3. [模型部署硬件选型](model-deployment-hardware-sizing.md)：理解显存、带宽、多卡互联和并行策略。
-4. [上下文工程](context-engineering.md)：理解为什么稳定 prompt 和多轮 Agent 上下文会影响 Prefix Cache。
+2. [大模型与推理优化术语表](llm-inference-terms-glossary.md)：查 GQA、MoE、TP、SP、EP、PDL、W8A8C8、OAM 等术语。
+3. [模型量化与推理压缩入门](model-quantization-and-compression.md)：理解 W8A8、W4A8、KV Cache 量化和评测风险。
+4. [模型部署硬件选型](model-deployment-hardware-sizing.md)：理解显存、带宽、多卡互联和并行策略。
+5. [上下文工程](context-engineering.md)：理解为什么稳定 prompt 和多轮 Agent 上下文会影响 Prefix Cache。
 
 ## 参考资料
 

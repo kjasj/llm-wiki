@@ -79,6 +79,346 @@ HTTP JSON 或 stream 返回
 | FlashAttention | attention 计算层 | 减少显存读写 |
 | Speculative Decoding | decode 阶段 | 降低逐 token 等待 |
 
+## 从用户 Query 到输出的完整流程
+
+如果把一次 LLM 推理从最外层 API 一直拆到 Transformer 内部，大致是这条链路：
+
+```text
+用户 query / messages
+  ↓
+chat template / prompt 拼接
+  ↓
+tokenizer：文本 -> token ids
+  ↓
+embedding：token ids -> 向量
+  ↓
+prefill：一次性处理所有输入 token
+  ↓
+每一层 Transformer：
+  1. 由 hidden states 投影出 Q、K、V
+  2. Q 和 K 计算 attention 分数
+  3. attention 权重加权 V，得到上下文信息
+  4. 经过 FFN / MoE 等模块
+  5. 保存本层输入 token 的 K/V 到 KV Cache
+  ↓
+得到最后一个输入位置的 hidden state
+  ↓
+LM head：hidden state -> logits
+  ↓
+sampler：temperature / top_p / top_k 等选择下一个 token
+  ↓
+decode loop：把新 token 接回模型，继续生成
+  ↓
+tokenizer decode：token ids -> 文本
+  ↓
+HTTP JSON / stream 返回
+```
+
+这条链路里，最容易混的是四件事：
+
+- tokenizer 发生在模型计算之前，把文本变成 token id。
+- embedding 是模型的第一层查表，把 token id 变成向量。
+- prefill 和 decode 不是两种模型结构，而是同一个模型推理时的两个阶段。
+- KV Cache 保存的是每一层 attention 里算出来的 K/V，不是用户文本，也不是长期记忆。
+
+### 1. 用户 query 不是直接进模型
+
+用户输入通常不是只有一句 query。
+
+在聊天或 Agent 产品里，真正送进 tokenizer 的文本往往是：
+
+```text
+system message
+developer message
+历史对话
+工具说明
+检索结果
+用户 query
+输出格式要求
+```
+
+这些内容会先经过 chat template 或 prompt builder，拼成模型训练时认识的格式。
+
+例如概念上可能变成：
+
+```text
+<|system|>
+你是一个助手。
+<|user|>
+解释 KV Cache。
+<|assistant|>
+```
+
+然后 tokenizer 才开始工作。
+
+### 2. Tokenizer：文本变成 token ids
+
+Tokenizer 做的是：
+
+```text
+"解释 KV Cache"
+  ↓
+[1287, 392, 9142, ...]
+```
+
+模型不直接理解字符串。它只接收整数 token id。
+
+注意：
+
+- token 不等于中文词，也不等于英文单词。
+- 一个汉字可能是一个 token，也可能和其他字符组合成 token。
+- 空格、标点、换行、特殊角色都可能影响 token 切分。
+
+### 3. Embedding：token ids 变成向量
+
+Token id 只是编号。
+
+Embedding 层会查表，把每个 token id 变成一个向量：
+
+```text
+token id 1287 -> [0.12, -0.03, ...]
+token id 392  -> [0.44,  0.18, ...]
+```
+
+之后 Transformer 处理的就是这些向量。
+
+可以粗略理解为：
+
+```text
+tokenizer 负责把文本编号化
+embedding 负责把编号向量化
+```
+
+### 4. Prefill：一次性读完整个输入
+
+Prefill 是模型第一次处理输入 prompt 的阶段。
+
+如果输入有 2000 个 token，prefill 会一次性把这 2000 个 token 过完模型。
+
+它做了三件重要的事：
+
+1. 让每个输入 token 经过所有 Transformer 层。
+2. 为每一层、每个输入 token 计算 K/V。
+3. 把这些 K/V 存进 KV Cache，供后续 decode 复用。
+
+这就是为什么输入越长，首 token 越慢：
+
+```text
+输入越长
+  ↓
+prefill 要处理的 token 越多
+  ↓
+TTFT 越容易变高
+```
+
+### 5. Q、K、V 在哪里出现
+
+Q、K、V 不是 tokenizer 产物，也不是 embedding 直接产物。
+
+它们是在每一层 Transformer 的 attention 里，由当前 hidden states 线性投影出来的：
+
+```text
+hidden states
+  ↓
+Wq -> Q
+Wk -> K
+Wv -> V
+```
+
+直觉是：
+
+```text
+Q：当前 token 想找什么？
+K：每个历史 token 能提供什么线索？
+V：如果关注这个 token，能拿到什么信息？
+```
+
+Attention 做的是：
+
+```text
+Q 和所有 K 比较
+  ↓
+得到 attention 权重
+  ↓
+用权重加权求和 V
+  ↓
+得到当前 token 融合上下文后的表示
+```
+
+### 6. KV Cache：缓存每一层的 K/V
+
+Prefill 时，模型会把输入 token 在每一层算出的 K/V 存起来。
+
+Decode 时，新 token 只需要计算自己的 Q/K/V，然后拿自己的 Q 去看历史 K/V。
+
+不用再把所有历史 token 的 K/V 重新算一遍。
+
+可以理解为：
+
+```text
+prefill:
+  输入 token 1..N 全部计算
+  保存 K/V 到 KV Cache
+
+decode 第 1 步:
+  新 token N+1 计算 Q/K/V
+  Q 去读历史 token 1..N 的 K/V
+  新 token 的 K/V 追加进 KV Cache
+
+decode 第 2 步:
+  新 token N+2 计算 Q/K/V
+  Q 去读历史 token 1..N+1 的 K/V
+  再追加 K/V
+```
+
+所以 KV Cache 会随着生成变长而增长。
+
+### 7. Prefix Cache 和 KV Cache 的关系
+
+KV Cache 是一次请求内部的缓存。
+
+Prefix Cache 是跨请求复用“相同前缀”的 KV Cache。
+
+例子：
+
+```text
+请求 A:
+system prompt + 工具说明 + 用户问题 A
+
+请求 B:
+system prompt + 工具说明 + 用户问题 B
+```
+
+如果前面的 `system prompt + 工具说明` 完全相同，系统可以复用这部分前缀已经算好的 KV。
+
+直觉：
+
+```text
+KV Cache:
+  同一次生成里，历史 token 不重复算
+
+Prefix Cache:
+  不同请求之间，相同开头不重复算
+```
+
+因此 Prefix Cache 通常发生在 prefill 前后：
+
+1. prefill 前先查：这个 prompt 前缀有没有算过？
+2. 命中后复用已有 K/V。
+3. 只对未命中的后半段继续 prefill。
+
+### 8. Decode：一个 token 一个 token 生成
+
+Prefill 完成后，模型会根据最后一个位置的 hidden state 预测下一个 token。
+
+简化链路：
+
+```text
+最后一个 hidden state
+  ↓
+LM head
+  ↓
+logits
+  ↓
+sampler
+  ↓
+next token id
+```
+
+生成出的 token 会被接回输入末尾，进入下一轮 decode。
+
+每一轮 decode 都会：
+
+1. 读取已有 KV Cache。
+2. 计算当前新 token 的 Q/K/V。
+3. 追加新 token 的 K/V 到 KV Cache。
+4. 产生下一 token 的 logits。
+5. 采样得到下一个 token。
+
+直到遇到停止条件：
+
+- 生成了结束 token。
+- 达到 max output tokens。
+- 命中 stop sequence。
+- 服务端或用户取消。
+- 安全策略或工具流程要求停止。
+
+### 9. Encoder、Decoder、Decoder-only 怎么放进这条链路
+
+Transformer 最早有 Encoder 和 Decoder 两部分。
+
+但现在很多聊天大模型是 decoder-only。
+
+三类结构可以这样分：
+
+| 结构 | 典型用途 | 推理时怎么理解 |
+| --- | --- | --- |
+| Encoder-only | BERT 类理解任务 | 读完整段文本，输出分类、向量或标注，不负责逐 token 生成 |
+| Encoder-Decoder | T5、翻译、摘要 | Encoder 先读输入，Decoder 再根据 encoder 输出逐 token 生成 |
+| Decoder-only | GPT、Llama、Qwen、DeepSeek 等聊天模型 | 把 prompt 当作前缀读入，然后继续预测下一个 token |
+
+你平时调用聊天 LLM 时，多数可以按 decoder-only 理解：
+
+```text
+prompt token 1..N
+  ↓
+prefill 建立上下文和 KV Cache
+  ↓
+decoder 继续预测 token N+1
+  ↓
+不断 decode
+```
+
+这里的“decoder”不是说一定还有一个单独的 encoder。
+
+它指的是模型结构采用自回归 decoder 思路：
+
+> 每个位置只能看自己之前的 token，然后预测下一个 token。
+
+### 10. 一张更接近真实服务的总图
+
+```text
+用户 / 应用
+  ↓
+API Gateway
+  ↓
+鉴权、限流、路由、模型选择
+  ↓
+构造 messages / prompt / chat template
+  ↓
+tokenizer.encode()
+  ↓
+调度器排队、batching、查 Prefix Cache
+  ↓
+embedding
+  ↓
+prefill
+  ├─ 每层 attention 计算 Q/K/V
+  ├─ attention + FFN / MoE
+  └─ 写入 KV Cache
+  ↓
+LM head 得到 logits
+  ↓
+sampler 选择第一个输出 token
+  ↓
+decode loop
+  ├─ 读取 KV Cache
+  ├─ 只处理新增 token
+  ├─ 追加新 K/V
+  ├─ LM head 得到 logits
+  └─ sampler 选择下一个 token
+  ↓
+tokenizer.decode()
+  ↓
+stream / JSON 返回文本
+```
+
+如果只记最短版本，就是：
+
+```text
+文本 -> token id -> embedding -> prefill 建缓存 -> decode 读缓存逐 token 生成 -> token id 转文本
+```
+
 ## 两条主线
 
 这些概念可以分成两条主线。
@@ -819,6 +1159,7 @@ MoE 让大模型每次只激活一部分
 
 继续读：
 
+- [大模型与推理优化术语表](llm-inference-terms-glossary.md)
 - [LLM API：从 HTTP 到 Transformer](openai-api-beginner.md)
 - [Reasoning Models 与 Test-Time Compute 入门](reasoning-models-test-time-compute.md)
 - [模型量化与推理压缩入门](model-quantization-and-compression.md)
