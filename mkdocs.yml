@@ -42,6 +42,7 @@ nav:
       - 推理优化案例: topics/hy3-preview-inference-optimization-case.md
   - 2. 应用与部署:
       - API 调用链: topics/openai-api-beginner.md
+      - Chat 执行链: topics/openai-chat-api-execution-pipeline.md
       - 应用架构: topics/llm-application-architecture.md
       - RAG 工程: topics/rag-engineering-practice.md
       - 模型路由: topics/model-selection-routing.md

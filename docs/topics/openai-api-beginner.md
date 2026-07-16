@@ -1057,6 +1057,8 @@ POST /v1/chat/completions
 
 如果你开始看到 reasoning effort、thinking budget 或 reasoning tokens，继续读：[Reasoning Models 与 Test-Time Compute 入门](reasoning-models-test-time-compute.md)。
 
+如果你想沿着一个本地请求继续追到 Chat Template、Scheduler、Prefill、Decode 和 SSE，继续读：[OpenAI-compatible Chat API 执行链路](openai-chat-api-execution-pipeline.md)。
+
 ## 参考资料
 
 - [OpenAI Text generation guide](https://developers.openai.com/api/docs/guides/text)

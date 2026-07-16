@@ -33,6 +33,7 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 | 想建立完整知识地图 | [从 LLM 出生到大型 Agent 系统](topics/llm-to-agent-system-overview.md) | [LLM 生命周期](topics/llm-lifecycle.md) |
 | 想理解模型怎么处理文本 | [数据、Tokenizer 与预训练数据工程入门](topics/data-tokenizer-pretraining-data.md) | [Transformer 入门](topics/transformer-beginner.md) |
 | 想做 LLM 应用 | [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md) | [LLM 应用架构](topics/llm-application-architecture.md) |
+| 想看懂一次 Chat 请求的内部执行 | [OpenAI-compatible Chat API 执行链路](topics/openai-chat-api-execution-pipeline.md) | [LLM 推理与架构优化入门](topics/llm-inference-architecture.md) |
 | 想做企业知识库或文档问答 | [RAG 工程实践](topics/rag-engineering-practice.md) | [Agent 效果评测框架](topics/agent-evaluation-framework.md) |
 | 想控制模型质量、延迟和成本 | [模型选择与路由](topics/model-selection-routing.md) | [参数调优手册](topics/parameter-tuning-handbook.md) |
 | 想训练或微调模型 | [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md) | [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md) |
@@ -70,17 +71,18 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 ### 2. 应用与部署
 
 1. [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)
-2. [LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent](topics/llm-application-architecture.md)
-3. [RAG 工程实践](topics/rag-engineering-practice.md)
-4. [模型选择与路由](topics/model-selection-routing.md)
-5. [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)
-6. [原生 Python 训练循环入门](topics/python-training-loop.md)
-7. [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md)
-8. [本地部署框架对比](topics/local-deployment-frameworks.md)
-9. [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
-10. [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
-11. [参数调优手册](topics/parameter-tuning-handbook.md)
-12. [LLM 应用生产化](topics/llmops-production.md)
+2. [OpenAI-compatible Chat API 执行链路](topics/openai-chat-api-execution-pipeline.md)
+3. [LLM 应用架构：Chatbot、RAG、工具调用、工作流与 Agent](topics/llm-application-architecture.md)
+4. [RAG 工程实践](topics/rag-engineering-practice.md)
+5. [模型选择与路由](topics/model-selection-routing.md)
+6. [模型训练与部署学习路线](topics/model-training-deployment-roadmap.md)
+7. [原生 Python 训练循环入门](topics/python-training-loop.md)
+8. [LoRA 与 QLoRA 微调入门](topics/lora-qlora-finetuning.md)
+9. [本地部署框架对比](topics/local-deployment-frameworks.md)
+10. [模型量化与推理压缩入门](topics/model-quantization-and-compression.md)
+11. [模型部署硬件选型](topics/model-deployment-hardware-sizing.md)
+12. [参数调优手册](topics/parameter-tuning-handbook.md)
+13. [LLM 应用生产化](topics/llmops-production.md)
 
 这一组回答“怎么把模型接进业务、怎么训练一点自己的行为、怎么让它跑起来并调到可用”。
 
@@ -116,10 +118,11 @@ Context Engineering、Multi-Agent、大型 Agent 系统
 读：
 
 1. [LLM API：从 HTTP 到 Transformer](topics/openai-api-beginner.md)
-2. [LLM 应用架构](topics/llm-application-architecture.md)
-3. [模型选择与路由](topics/model-selection-routing.md)
-4. [参数调优手册](topics/parameter-tuning-handbook.md)
-5. [LLM 应用生产化](topics/llmops-production.md)
+2. [OpenAI-compatible Chat API 执行链路](topics/openai-chat-api-execution-pipeline.md)
+3. [LLM 应用架构](topics/llm-application-architecture.md)
+4. [模型选择与路由](topics/model-selection-routing.md)
+5. [参数调优手册](topics/parameter-tuning-handbook.md)
+6. [LLM 应用生产化](topics/llmops-production.md)
 
 暂时跳过训练、量化和 Multi-Agent。先把 API、上下文、状态、日志和评测闭环做清楚。
 

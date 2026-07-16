@@ -43,3 +43,9 @@
 
 - 新增 [大模型与推理优化术语表](../topics/llm-inference-terms-glossary.md)，长期维护大模型、推理优化、硬件 kernel、并行通信、缓存调度、量化稀疏和线上指标相关术语。
 - 该文档放在“总览”分组，和核心概念索引分工：概念索引用于分流，术语表用于解释专业缩写和工程含义。
+
+## 2026-07-16 Chat API 执行链专题
+
+- 新增 [OpenAI-compatible Chat API 执行链路](../topics/openai-chat-api-execution-pipeline.md)，用单次本地请求串起 HTTP JSON、Chat Template、Tokenizer、Scheduler、Prefill、Decode、工具调用和 JSON / SSE 返回。
+- 现有 API 入门继续负责公开接口和参数的整体认知；新专题聚焦兼容服务内部可观察、可复现的执行过程，避免把 nano-vllm 等开源实现误写成 OpenAI 托管服务的内部实现。
+- 专题基于用户提供的博客文章重新组织，并使用 OpenAI、Transformers、vLLM 与 nano-vllm 的一手资料校正模型模板、批处理和 API / Engine 边界。
